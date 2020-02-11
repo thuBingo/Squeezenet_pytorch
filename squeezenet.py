@@ -43,19 +43,19 @@ class SqueezeNet(nn.Module):
     def __init__(self, class_num):
         super(SqueezeNet, self).__init__()
         self.class_num = class_num
-        self.conv1 = nn.Conv2d(3, 96, kernel_size=3, stride=1, padding=1) # 32
+        self.conv1 = nn.Conv2d(3, 96, kernel_size=3, stride=1, padding=1) # 128x128
         self.bn1 = nn.BatchNorm2d(96)
         self.relu = nn.ReLU(inplace=True)
-        self.maxpool1 = nn.MaxPool2d(kernel_size=2, stride=2) # 16
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2, stride=2) # 64x64
         self.fire2 = fire(96, 16, 64)
         self.fire3 = fire(128, 16, 64)
         self.fire4 = fire(128, 32, 128)
-        self.maxpool2 = nn.MaxPool2d(kernel_size=2, stride=2) # 8
+        self.maxpool2 = nn.MaxPool2d(kernel_size=2, stride=2) # 32x32
         self.fire5 = fire(256, 32, 128)
         self.fire6 = fire(256, 48, 192)
         self.fire7 = fire(384, 48, 192)
         self.fire8 = fire(384, 64, 256)
-        self.maxpool3 = nn.MaxPool2d(kernel_size=2, stride=2) # 4
+        self.maxpool3 = nn.MaxPool2d(kernel_size=2, stride=2) # 16x16
         self.fire9 = fire(512, 64, 256)
         self.softmax = nn.LogSoftmax(dim=1)
         self.classifier = nn.Sequential(
