@@ -96,7 +96,7 @@ class SqueezeNet(nn.Module):
 
 def squeezenet(pretrained=False):
     net = SqueezeNet()
-    # inp = Variable(torch.randn(64,3,32,32))
+    # inp = Variable(torch.randn(32,3,256,256))
     # out = net.forward(inp)
     # print(out.size())
     return net
